@@ -32,8 +32,8 @@ public class Comment {
     private LocalDateTime updatedOn;
 
     @ManyToOne
-    @JoinColumn(name="post_id", nullable = false)
-    private Post post;
+    @JoinColumn(name="tpost_id", nullable = false)
+    private Tpost tpost;
 }
 
 

@@ -1,6 +1,6 @@
 package net.adebusoyeteeman.springbootthymeleafakinadewebapp.repository;
 
-import net.toheebcode.springbootblogcontentstoreswebapp.entity.Role;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.entity.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {

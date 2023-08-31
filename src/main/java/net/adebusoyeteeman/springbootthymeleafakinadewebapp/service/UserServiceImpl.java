@@ -1,10 +1,12 @@
 package net.adebusoyeteeman.springbootthymeleafakinadewebapp.service;
 
-import net.toheebcode.springbootblogcontentstoreswebapp.dto.RegistrationDto;
-import net.toheebcode.springbootblogcontentstoreswebapp.entity.Role;
-import net.toheebcode.springbootblogcontentstoreswebapp.entity.User;
-import net.toheebcode.springbootblogcontentstoreswebapp.repository.RoleRepository;
-import net.toheebcode.springbootblogcontentstoreswebapp.repository.UserRepository;
+
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.dto.RegistrationDto;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.entity.Role;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.entity.User;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.repository.RoleRepository;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.repository.UserRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -13,10 +15,13 @@ import java.util.Arrays;
 public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
-
-    public UserServiceImpl(UserRepository userRepository, RoleRepository repository) {
+    private PasswordEncoder passwordEncoder;
+    public UserServiceImpl(UserRepository userRepository,
+                           RoleRepository roleRepository,
+                           PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.roleRepository = repository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -25,14 +30,14 @@ public class UserServiceImpl implements UserService {
         user.setName(registrationDto.getFirstName() + " " + registrationDto.getLastName());
         user.setEmail(registrationDto.getEmail());
         // use spring security to encrypt the password
-        user.setPassword(registrationDto.getPassword());
+        user.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
         Role role = roleRepository.findByName("ROLE_GUEST");
         user.setRoles(Arrays.asList(role));
         userRepository.save(user);
     }
 
 //92
-    @Override
+   @Override
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
     }

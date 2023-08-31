@@ -1,13 +1,13 @@
 package net.adebusoyeteeman.springbootthymeleafakinadewebapp.service;
 
-import net.toheebcode.springbootblogcontentstoreswebapp.dto.CommentDto;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.dto.CommentDto;
 
 import java.util.List;
 
 public interface CommentService {
-    void createComment(String postUrl, CommentDto commentDto);
+    void createComment(String tpostUrl, CommentDto commentDto);
 
-    List<CommentDto> findAllComments();
+    List<CommentDto> findAllComments(); // 70
 
     void deleteComment(Long commentId);  // 85
 

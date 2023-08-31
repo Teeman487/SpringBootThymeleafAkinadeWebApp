@@ -1,10 +1,15 @@
 package net.adebusoyeteeman.springbootthymeleafakinadewebapp.security;
 
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.entity.User;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.repository.UserRepository;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
 
-/*
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
@@ -31,4 +36,4 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("Invalid username and password");
         }
     }
-}*/
+}

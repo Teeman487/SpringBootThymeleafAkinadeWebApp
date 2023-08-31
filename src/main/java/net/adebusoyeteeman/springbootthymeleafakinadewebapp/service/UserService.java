@@ -1,11 +1,12 @@
 package net.adebusoyeteeman.springbootthymeleafakinadewebapp.service;
 
-import net.toheebcode.springbootblogcontentstoreswebapp.dto.RegistrationDto;
-import net.toheebcode.springbootblogcontentstoreswebapp.entity.User;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.dto.RegistrationDto;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.entity.User;
+
 
 public interface UserService {
     void saveUser(RegistrationDto registrationDto);
-    User findByEmail(String email);
+   User findByEmail(String email);
 }
 
 /*public interface UserService {

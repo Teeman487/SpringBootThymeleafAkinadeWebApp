@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<!--<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>-->
+
+<div th:replace="blog/header :: header"></div>
+<body>
+<div th:replace="blog/header :: navbar"></div>
+
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div th:each = "tpost: ${tpostsResponse}">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>
+
+                            <a th:href="@{/tpost/{tpostUrl}(tpostUrl=${tpost.url})}"
+                               th:text="${tpost.projectTitle}"></a>
+
+                        </h3>
+
+                        <div>
+                            <strong th:text="${#temporals.format(tpost.createdOn, 'dd MMM yyy')}">
+                            </strong>
+
+                        </div>
+                             <!---->
+                    </div>
+
+                    <div class="card-body">
+                        <span th:utext="${tpost.adebusoyeBriefContent}"> </span>
+                        <a th:href="@{/tpost/{tpostUrl}(tpostUrl=${tpost.url})}">Read more</a>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+        <div class="col-md-3">
+
+            <!-- search bar-->
+            <div th:replace="blog/search :: search"></div>
+        </div>
+
+    </div>
+</div>
+<div th:replace="blog/footer :: footer"></div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<div th:replace="blog/header :: header"></div>
+<body>
+<div th:replace="blog/header :: navbar"></div>
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div th:each = "post: ${postsResponse}">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>
+                            <a th:href="@{/post/{postUrl}(postUrl=${post.url})}"
+                               th:text="${post.title}"></a>
+                        </h3>
+                        <div>
+                            <strong th:text="${#temporals.format(post.createdOn, 'dd MMMM yyyy')}">
+
+                            </strong>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <span th:utext="${post.shortDescription}"> </span>
+                        <a th:href="@{/post/{postUrl}(postUrl=${post.url})}">Read more</a>
+                    </div>
+                </div>
+                <br />
+            </div>
+        </div>
+        <div class="col-md-3">
+            &lt;!&ndash; search bar           &ndash;&gt;
+            <div th:replace="blog/search :: search"></div>
+        </div>
+    </div>
+</div>
+<div th:replace="blog/footer :: footer"></div>
+</body>
+</html>-->

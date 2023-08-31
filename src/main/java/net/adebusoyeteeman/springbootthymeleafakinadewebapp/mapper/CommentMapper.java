@@ -1,12 +1,13 @@
 package net.adebusoyeteeman.springbootthymeleafakinadewebapp.mapper;
 
-import net.toheebcode.springbootblogcontentstoreswebapp.dto.CommentDto;
-import net.toheebcode.springbootblogcontentstoreswebapp.entity.Comment;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.dto.CommentDto;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.entity.Comment;
+
 
 public class CommentMapper {
     //convert comment entity to  comment dto
     public static CommentDto mapToCommentDto(Comment comment) {
-       return CommentDto.builder()
+        return CommentDto.builder()
                 .id(comment.getId())
                 .name(comment.getName())
                 .email(comment.getEmail())
@@ -18,7 +19,7 @@ public class CommentMapper {
 
 
 
-    // convert cpmment dto to coment entity
+    // convert comment dto to comment entity
     public  static Comment mapToComment(CommentDto commentDto) {
         return  Comment.builder()
                 .id(commentDto.getId())
@@ -26,6 +27,7 @@ public class CommentMapper {
                 .email(commentDto.getEmail())
                 .content(commentDto.getContent())
                 .createdOn(commentDto.getCreatedOn())
+                .updatedOn(commentDto.getUpdatedOn())
                 .build();
     }
 }
