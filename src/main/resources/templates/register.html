@@ -14,7 +14,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Spring Boot Thymeleaf Blog App</a>
+        <a class="navbar-brand" href="#">Adebusoye Blog Features...</a>
         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,11 +34,13 @@
             <div class="card-header">
                 <h2 class="text-center">Registration</h2>
             </div>
-            <div th:if="${param.success}">
+
+            <div th:if="${param.success}">   <!--if this parmeter is true-->
                 <div class="alert alert-info">
                     You have registered successfully to our Blog app!
                 </div>
-            </div>
+            </div>    <!--return "redirect:/register?success"; // to show the success message-->
+
             <div class="card-body">
                 <form method="post"
                       role="form"
@@ -113,7 +115,7 @@
 </div>
 <br /><br /><br />
 <footer class="footer-copyright text-center bg-dark py-3"
-        style="position:fixed; width:100%; bottom:0; color:white">
+        style="position:fixed; width:100%; height:40px;bottom:0; color:white">
     <div>
         <strong>
             Copyright &copy; 2023 <a href="https://www.adebusoyeakinade.net">Adebusoye-Akinade</a>

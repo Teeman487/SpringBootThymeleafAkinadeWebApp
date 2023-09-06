@@ -14,7 +14,7 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Spring Boot Thymeleaf Blog App</a>
+        <a class="navbar-brand" href="#">Adebusoye Blog Features...</a>
         <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -30,11 +30,12 @@
 <br /><br />
 <div class="container">
     <div class="row col-md-6 offset-md-3">
-        <div th:if="${param.error}">  <!--99 error-->
+
+       <!-- 99 error --> <div th:if="${param.error}">   <!--http://localhost:8080/login?logout; access the error-->
             <div class="alert alert-danger">Invalid email or password.</div>
         </div>
 
-        <div th:if="${param.logout}"> <!--99 logout-->
+        <div th:if="${param.logout}"> <!--99 logout-->  <!--localhost:8080/login?logout; we need to access logout feature-->
             <div class="alert alert-success"> You have been logged out.</div>
         </div>
 
@@ -82,7 +83,7 @@
 </div>
 <br /><br /><br />
 <footer class="footer-copyright text-center bg-dark py-3"
-        style="position:fixed; width:100%; bottom:0; color:white">
+        style="position:fixed;height:40px; width:100%; bottom:0; color:white">
     <div>
         <strong>
             Copyright &copy; 2022 <a href="https://www.adebusoyeakinade.net">Adebusoye-Akinade</a>

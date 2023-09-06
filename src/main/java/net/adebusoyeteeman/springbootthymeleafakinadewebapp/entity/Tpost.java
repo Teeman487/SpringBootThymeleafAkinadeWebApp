@@ -35,11 +35,13 @@ public class Tpost {   //post jpa entity // To verify whether hibernate will cre
     private LocalDateTime updateOn;   //blogPost updated date
     //75
 
-    @ManyToOne   // 102
-    @JoinColumn(name = "created_by", nullable = false)
-    private User createdBy;
 
+    @ManyToOne   // 104    Define Many to One Relationship Between Post and
+    @JoinColumn(name = "created_by", nullable = false) // we have created foreign key to Users table
+    private User createdBy; // drop comments, tposts, users, users_roles
+    //primary key of User table become the foreign key for Tpost table
     @OneToMany(mappedBy = "tpost", cascade = CascadeType.REMOVE)
     private Set<Comment> comments = new HashSet<>();
-
+    // multiple post belongs to 1 user and 1 User can write multiplr posts
 }
+// 102    Define Many to One Relationship Between Post

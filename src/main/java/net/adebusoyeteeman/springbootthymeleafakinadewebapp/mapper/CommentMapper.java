@@ -3,7 +3,6 @@ package net.adebusoyeteeman.springbootthymeleafakinadewebapp.mapper;
 import net.adebusoyeteeman.springbootthymeleafakinadewebapp.dto.CommentDto;
 import net.adebusoyeteeman.springbootthymeleafakinadewebapp.entity.Comment;
 
-
 public class CommentMapper {
     //convert comment entity to  comment dto
     public static CommentDto mapToCommentDto(Comment comment) {
@@ -56,5 +55,4 @@ public class CommentMapper {
                 .updatedOn(commentDto.getUpdatedOn())
                 .build();
     }
-}
-*/
+}*/

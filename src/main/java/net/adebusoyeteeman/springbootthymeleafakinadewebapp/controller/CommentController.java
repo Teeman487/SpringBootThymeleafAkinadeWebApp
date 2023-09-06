@@ -8,6 +8,7 @@ import net.adebusoyeteeman.springbootthymeleafakinadewebapp.service.TpostService
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,10 +20,13 @@ public class CommentController {
 
     public CommentController(CommentService commentService, TpostService tpostService) {
         this.commentService = commentService;
-        this.tpostService = tpostService; // 81
+        this.tpostService = tpostService;
     }
-    // handler method to createform submit request
 
+    // handler method to createform submit request
+    /*th:action="@{/{tpostUrl}/comments(tpostUrl=${tpost.url})}"
+    th:object="${comment}"*/
+    //th:href="@{/tpost/{tpostUrl}(tpostUrl=${tpost.url})}"
     @PostMapping("/{tpostUrl}/comments")
     public String createComment(@PathVariable("tpostUrl") String tpostUrl,
                                 @Valid @ModelAttribute("comment") CommentDto commentDto,
@@ -42,7 +46,6 @@ public class CommentController {
 
     }
 }
-
 
 
 

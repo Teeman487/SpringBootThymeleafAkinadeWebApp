@@ -1,3 +1,4 @@
+/* 100 Database Authentication Implementation*/
 package net.adebusoyeteeman.springbootthymeleafakinadewebapp.security;
 
 import net.adebusoyeteeman.springbootthymeleafakinadewebapp.entity.User;
@@ -9,6 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.stream.Collectors;
+
+
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

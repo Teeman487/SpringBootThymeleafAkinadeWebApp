@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User { //
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,6 +26,7 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
+
     @ManyToMany(fetch = FetchType.EAGER, cascade =CascadeType.ALL)
     @JoinTable(
             name = "users_roles",
@@ -34,4 +35,6 @@ public class User {
 
     )
     private List<Role> roles =new ArrayList<>();
+
+
 }

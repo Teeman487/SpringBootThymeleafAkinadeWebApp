@@ -9,6 +9,7 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+
 //87
 @Getter
 @Setter
@@ -25,6 +26,10 @@ public class Role {
     @ManyToMany(mappedBy = "roles")
     private List<User> users = new ArrayList<>();
 }
+
+
+
+
 
 /*@Getter
 @Setter

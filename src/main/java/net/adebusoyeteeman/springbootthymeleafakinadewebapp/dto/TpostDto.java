@@ -26,14 +26,16 @@ public class TpostDto { //Model entity- is useful when we want to transport data
     private String url;
     @NotEmpty (message = "content should not be empty")
     private String content;
-    @NotEmpty (message = "brief content should not be empty")
+    @NotEmpty (message = "brief title description should not be empty")
     private String adebusoyeBriefContent;
 
     private LocalDateTime createdOn;
-
     private LocalDateTime updateOn;
-    private Set<CommentDto> comments; // 82
+    private Set<CommentDto> comments; // 82 Display list of comments for Blog post
 }
+
+
+
 
     /*@NotEmpty(message = "post title should not be empty")
     private String title;

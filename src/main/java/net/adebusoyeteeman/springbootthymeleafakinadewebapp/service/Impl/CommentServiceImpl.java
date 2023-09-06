@@ -3,31 +3,38 @@ package net.adebusoyeteeman.springbootthymeleafakinadewebapp.service.Impl;
 import net.adebusoyeteeman.springbootthymeleafakinadewebapp.dto.CommentDto;
 import net.adebusoyeteeman.springbootthymeleafakinadewebapp.entity.Comment;
 import net.adebusoyeteeman.springbootthymeleafakinadewebapp.entity.Tpost;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.entity.User;
 import net.adebusoyeteeman.springbootthymeleafakinadewebapp.mapper.CommentMapper;
 import net.adebusoyeteeman.springbootthymeleafakinadewebapp.repository.CommentRepository;
-import net.adebusoyeteeman.springbootthymeleafakinadewebapp.repository.PostRepository;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.repository.TpostRepository;
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.repository.UserRepository;
 import net.adebusoyeteeman.springbootthymeleafakinadewebapp.service.CommentService;
-
+import net.adebusoyeteeman.springbootthymeleafakinadewebapp.util.SecurityUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+
+
 @Service
 public class CommentServiceImpl implements CommentService {
 
     private CommentRepository commentRepository;
-    private PostRepository postRepository;
+    private TpostRepository tpostRepository;
+    private UserRepository userRepository; //108 Refactor Admin Side List Comments Feature
 
-    public CommentServiceImpl(CommentRepository commentRepository, PostRepository postRepository) {
+    public CommentServiceImpl(CommentRepository commentRepository, TpostRepository tpostRepository, UserRepository userRepository) {
         this.commentRepository = commentRepository;
-        this.postRepository = postRepository;
+        this.tpostRepository = tpostRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
     public void createComment(String postUrl, CommentDto commentDto) {
 
-        Tpost tpost = postRepository.findByUrl(postUrl).get();
+        Tpost tpost = tpostRepository.findByUrl(postUrl).get();
         Comment comment = CommentMapper.mapToComment(commentDto);
         comment.setTpost(tpost);
         commentRepository.save(comment);
@@ -45,6 +52,17 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void deleteComment(Long commentId) {
         commentRepository.deleteById(commentId);
+    }
+
+    @Override  //108 Refactor Admin Side List Comments Feature
+    public List<CommentDto> findCommentsByPost() {
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User createdBy = userRepository.findByEmail(email);
+        Long userId = createdBy.getId();
+        List<Comment> comments = commentRepository.findCommentsByPost(userId);
+        return comments.stream()
+                .map((comment) -> CommentMapper.mapToCommentDto(comment))
+                .collect(Collectors.toList());
     }
 
 }

@@ -1,9 +1,7 @@
-<!--84 List Comments Feature Front End -->
-
-<!--
+<!--84 List Comments Feature Front End-->
 <!DOCTYPE html>
 <html lang="en"
-xmlns:th="http:www.thymeleaf.org"
+xmlns:th="http://www.thymeleaf.org"
 >
 <div th:replace="admin/header :: header" ></div>
 <body>
@@ -32,7 +30,8 @@ xmlns:th="http:www.thymeleaf.org"
             <td th:text="${comment.email}"></td>
             <td th:text="${comment.content}"></td>
             <td th:text="${#temporals.format(comment.createdOn, 'dd MMM yyyy')}" ></td>
-            <td></td>
+            <td><a class="btn btn-danger" th:href="@{/admin/tposts/comments/{commentId}(commentId=${comment.id})}">Delete</a>
+            </td>
 
 
         </tr>
@@ -43,15 +42,15 @@ xmlns:th="http:www.thymeleaf.org"
 </div>
 
 </body>
-</html>-->
+</html>
 
 
 
 
 <!--85-->
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http:www.thymeleaf.org"
+      xmlns:th="http://www.thymeleaf.org"
 >
 <div th:replace="admin/header :: header" ></div>
 <body>
@@ -93,4 +92,4 @@ xmlns:th="http:www.thymeleaf.org"
 </div>
 
 </body>
-</html>
+</html>-->

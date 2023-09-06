@@ -1,102 +1,3 @@
-<!--
-<!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
->
-&lt;!&ndash;<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>&ndash;&gt;
-<div th:replace="admin/header :: header"></div>
-<body>
-<div th:replace="admin/header :: navbar "> </div>
-<br/><br>
-<div class="container">
-    <div class="row col-nd-8 offset -md-2">
-        <div class="card">
-            <div class="card-header">
-                <h2 class="text-center"> Edit Post</h2>
-            </div>
-            <div class="card-body">
-                <form role="form" method="post" th:action="@{/admin/tposts}" th:object="${tpost}"> &lt;!&ndash;We use th:object attribute to point to the model object that is sent from the Spring MVC controller&ndash;&gt;
-                    <input type="hidden" th:field="*{id}"> &lt;!&ndash;reoved as we are passing &#45;&#45; {/admin/posts/{postId}(postId=${post.i d})}&#45;&#45;/admin/posts/{postId}(postId=${post.id}) handler edit post submit requeest &ndash;&gt;
-                    <input type="hidden" th:field="*{url}">           &lt;!&ndash;/{postId}(postId=${post.id})&ndash;&gt;
-                    <input type="hidden" th:field="*{createdOn}">
-                    <div class="mb-3">
-                        <label class="form-label">Title</label>
-                        <input
-                                type="text"
-                                class="form-control"
-                                id="title"
-                                placeholder="Enter post title"
-                                name="title"
-                                th:field="*{projectTitle}"
-                        />
-                        <p th:if="${#fields.hasErrors('title')}" class="text-danger"
-                           th:errors="*{title}"> </p>
-                    </div>
-
-                    <div class="mb-3">
-                        <label class="form-label">Short Description</label>
-                        <textarea
-                                class="form-control"
-                                id="shortDescription"
-                                placeholder="Enter post short description"
-                                rows="3"
-                                name="briefContent"
-                                th:field="*{adebu}"
-                        >
-                </textarea>
-                        <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"
-                           th:errors="*{shortDescription}"> </p>
-
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Content</label>
-                        <textarea
-                                class="form-control"
-                                id="content"
-                                placeholder="Enter post content"
-                                rows="12"
-                                name="content"
-                                th:field="*{content}"
-                        >
-                </textarea>
-                        <p th:if="${#fields.hasErrors('content')}" class="text-danger"
-                           th:errors="*{content}"> </p>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
-
-                </form>
-
-            </div>
-
-        </div>
-    </div>
-</div>
-<br/><br/><br/><br/><br/>
-<div th:replace="admin/footer :: footer"></div>
-<script src="https://code.jquery.com/jquery-3.7.0.min.js"
-        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
-        crossorigin="anonymous"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#content' ) )
-        .then( editor => {
-            console.log( editor );
-        } )
-        .catch( error => {
-            console.error( error );
-        } );
-</script>
-
-</body>
-</html>
--->
-
-<!--54 Create Thymeleaf Template for EditTpost similar to create_tpost.html-->
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
@@ -106,6 +7,7 @@
 <body>
 <div th:replace="admin/header :: navbar"></div>
 <br /><br />
+
 <div class="container">
     <div class="row col-md-8 offset-md-2">
         <div class="card">
@@ -113,11 +15,12 @@
                 <h2 class="text-center"> Edit Your Post</h2>
             </div>
 
-            <div class="card-body">  <!--th:action="@{/admin/tposts}" inline with submit form-->
-                <form role="form" method="post" th:action="@{/admin/tposts/{tpostId}(tpostId=${tpost.id})}" th:object="${tpost}">
-                    <!--<input type="hidden" th:field="*{id}">-->
-                    <input type="hidden" th:field="*{url}">
-                    <input type="hidden" th:field="*{createdOn}">
+            <div class="card-body">  <!--th:action="@{/admin/tposts}" is redirective link url expresssion inline with submit form ; -->
+                <!--<form role="form" method="post" th:action="@{/admin/tposts}" th:object="${tpost}">--> <!-- Remove Create_tpost Neglect Create and prepare for Edit-->
+                    <form role="form" method="post"  th:action="@{/admin/tposts/{tpostId}(tpostId=${tpost.id}) }"   th:object="${tpost}">  <!--pass id in the request url -->
+                    <!--<input type="hidden" th:field="*{id}">--> <!--reoved as we are passing -- {/admin/posts/{postId}(postId=${post.i d})}--/admin/posts/{postId}(postId=${post.id}) handler edit post submit requeest -->
+                    <input type="hidden" th:field="*{url}">           <!--/{postId}(postId=${post.id})-->
+                    <input type="hidden" th:field="*{createdOn}">  <!--send data with form hidden input elements-->
 
                     <div class="mb-3">
                         <label class="form-label"> Project Title </label>
@@ -125,7 +28,7 @@
                                 type="text"
                                 class="form-control"
                                 id="Project Title"
-                                placeholder="Enter post project title"
+                                placeholder="Enter your project title"
                                 name="title"
                                 th:field="*{projectTitle}"
                         />
@@ -135,7 +38,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="form-label">Brief Content</label>
+                        <label class="form-label">Brief Title Description</label>
                         <textarea
                                 class="form-control"
                                 id="briefContent"
@@ -193,3 +96,106 @@
 
 </body>
 </html>
+
+
+
+
+
+<!--54 Create Thymeleaf Template for EditTpost similar to create_tpost.html-->
+<!--
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+
+<div th:replace="admin/header :: header"></div>
+<body>
+<div th:replace="admin/header :: navbar"></div>
+<br /><br />
+<div class="container">
+    <div class="row col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center"> Edit Your Post</h2>
+            </div>
+
+            <div class="card-body">  &lt;!&ndash;th:action="@{/admin/tposts}" inline with submit form&ndash;&gt;
+                <form role="form" method="post" th:action="@{/admin/tposts/{tpostId}(tpostId=${tpost.id})}" th:object="${tpost}">
+                    &lt;!&ndash;<input type="hidden" th:field="*{id}">&ndash;&gt;
+                    <input type="hidden" th:field="*{url}">
+                    <input type="hidden" th:field="*{createdOn}">
+
+                    <div class="mb-3">
+                        <label class="form-label"> Project Title </label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="Project Title"
+                                placeholder="Enter post project title"
+                                name="title"
+                                th:field="*{projectTitle}"
+                        />
+
+                        <p th:if="${#fields.hasErrors('projectTitle')}" class="text-danger"
+                           th:errors="*{projectTitle}"></p> &lt;!&ndash;step5 Error validation&ndash;&gt;
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Brief Content</label>
+                        <textarea
+                                class="form-control"
+                                id="briefContent"
+                                placeholder="Enter post brief description"
+                                rows="3"
+                                name="briefContent"
+                                th:field="*{adebusoyeBriefContent}"
+                        >
+
+                        </textarea>
+
+                        <p th:if="${#fields.hasErrors('adebusoyeBriefContent')}" class="text-danger"
+                           th:errors="*{adebusoyeBriefContent}"></p>    &lt;!&ndash;step5 Error validation&ndash;&gt;
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Content</label>
+                        <textarea
+                                class="form-control"
+                                id="content"
+                                placeholder="Enter post content"
+                                rows="12"
+                                name="content"
+                                th:field="*{content}"
+                        >
+                        </textarea>
+                        <p th:if="${#fields.hasErrors('content')}" class="text-danger"
+                           th:errors="*{content}"></p>  &lt;!&ndash;step5 Error validation&ndash;&gt;
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<br /><br /><br /><br /><br />
+<div th:replace="admin/footer :: footer"></div>
+<script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#content' ) )
+        .then( editor => {
+            console.log( editor );
+        } )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
+</body>
+</html>-->

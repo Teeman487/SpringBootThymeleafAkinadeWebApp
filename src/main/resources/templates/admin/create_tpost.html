@@ -8,6 +8,7 @@
 <body>
 <div th:replace="admin/header :: navbar"></div>
 <br /><br />
+
 <div class="container">
   <div class="row col-md-8 offset-md-2">
     <div class="card">
@@ -15,15 +16,15 @@
         <h2 class="text-center"> Create Your Post</h2>
       </div>
 
-      <div class="card-body">  <!--th:action="@{/admin/tposts}" inline with submit form-->
-        <form role="form" method="post" th:action="@{/admin/tposts}" th:object="${tpost}">  <!--th:object="${tpost}" catches NewPost-->
+      <div class="card-body">  <!--th:action="@{/admin/tposts}" is redirective link url expresssion inline with submit form ; -->
+        <form role="form" method="post" th:action="@{/admin/tposts}" th:object="${tpost}">  <!-- i have redirected admin/tposts/newpost to admin/tposts  -->  <!--th:object="${tpost}" catches NewPost-->
           <div class="mb-3">
             <label class="form-label"> Project Title </label>
             <input
                     type="text"
                     class="form-control"
                     id="Project Title"
-                    placeholder="Enter post project title"
+                    placeholder="Enter your project title"
                     name="title"
                     th:field="*{projectTitle}"
             />
@@ -33,7 +34,7 @@
           </div>
 
           <div class="mb-3">
-            <label class="form-label">Brief Content</label>
+            <label class="form-label">Brief Title Description</label>
             <textarea
                     class="form-control"
                     id="briefContent"

@@ -1,6 +1,6 @@
 <!-- 1-Create Thymeleaf Template to Display List of Posts List Blog Lposts with databse-->
 
-<!--<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
 >
@@ -13,38 +13,67 @@
           crossorigin="anonymous">
 
 </head>
+<div th:replace="admin/header :: header"></div>
 <body>
+<div th:replace="admin/header :: navbar"></div>
+
 <div class="container">
     <div class="row">
-         <h1>Adebusoye Blog APP</h1>
+         <h1>ADEBUSOYE Blog APP</h1>
     </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <div class="form-group">
+                <form class="form-inline" th:action="@{/admin/tposts/search}">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="query" />
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="submit"> Search</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br />
+
+
+
+
+
+
 <table class="table table-striped table-hover table-bordered">
     <thead class="table-dark">
       <th style="width:10%" >#</th>
       <th style="width:20%" >Project Title</th>
-      <th style="width:30%" >Adebusoye Brief Content</th>
+      <th style="width:30%" >Brief Title Description </th>
       <th style="width:20%" >Contents Created On</th>
       <th style="width:20%" >Actions</th>
     </thead>
     <tbody>
-
-    <tr th:each = "tpost, tpostStat : ${tposts}">
-         <td th:text="${tpostStat.count}">1</td>
-         <td th:text="${tpost.projectTitle}">Project Title</td>
-         <td th:text="${tpost.adebusoyeBriefContent}">Adebusoye Brief Content</td>
-
-         <td th:text="${tpost.createdOn}">Content created date</td>
-         <td>
-             <a th:href="@{/admin/tposts/{postId}/edit(tpostId=${tpost.id})}" class="btn btn-primary">Edit</a>
-             <a th:href="@{/admin/tposts/{postId}/delete(tpostId=${tpost.id})}" class="btn btn-danger">Delete</a>
-         </td>
-     </tr>
-
+    <tr th:each = "tpost, tpostStat : ${tposts}"> <!--iteration-->
+        <td th:text="${tpostStat.count}">1</td>
+        <td th:text="${tpost.projectTitle}">Project Title</td>
+        <td th:text="${tpost.adebusoyeBriefContent}">Brief Title Description</td>
+        <!--<td th:text="${tpost.createdOn}">Content created date</td>-->
+        <td th:text="${#temporals.format(tpost.createdOn,'dd MMM yyy')}">28 Aug 2023</td>
+        <td>
+            <a th:href="@{/admin/tposts/{tpostId}/edit(tpostId=${tpost.id})}" class="btn btn-primary">Edit</a>
+            <a th:href="@{/admin/tposts/{tpostId}/delete(tpostId=${tpost.id})}" class="btn btn-danger">Delete</a>
+            <a th:href="@{/admin/tposts/{tpostUrl}/view(tpostUrl=${tpost.url})}" class="btn btn-info">View</a>
+            <!--Remember our CRUD operation working here-->
+        </td>
+    </tr>
      </tbody>
    </table>
  </div>
+
+<div th:replace="admin/footer :: footer"></div>
 </body>
-</html>-->
+</html>
+
+
 
 
 
@@ -111,24 +140,25 @@ style="position:fixed; height:50px; width:100%; bottom:0">
 
 
 <!--3 - header.html Include Header, Navbar and Footer as Fragment-->
+<!--
 <!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
 >
-<!--<head>
+&lt;!&ndash;<head>
     <meta charset="UTF-8">
     <title>Spring Boot Thymeleaf Blog App </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
           rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
           crossorigin="anonymous">
-</head>-->
+</head>&ndash;&gt;
 
-<div th:replace="admin/header :: header"></div>      <!--th:replace - replaces the current tag with the tag defining the fragment-->
+<div th:replace="admin/header :: header"></div>      &lt;!&ndash;th:replace - replaces the current tag with the tag defining the fragment&ndash;&gt;
 <body>
 <div th:replace="admin/header :: navbar"></div>
 
-<!--<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
+&lt;!&ndash;<nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">UmmuAqibatul-Khair Blog App</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -144,14 +174,14 @@ style="position:fixed; height:50px; width:100%; bottom:0">
 
         </div>
     </div>
-</nav>-->
+</nav>&ndash;&gt;
 
 <div class="container">
     <div class="row">
         <h1>Adebusoye Blog APP</h1>
     </div>
 
-    <!--65 Implement Frontend or search blog Post Feature-->
+    &lt;!&ndash;65 Implement Frontend or search blog Post Feature&ndash;&gt;
     <div  class="row">
         <div class="col-md-5">
             <div class="form-group">
@@ -169,11 +199,11 @@ style="position:fixed; height:50px; width:100%; bottom:0">
             </div>
         </div>
     </div>
-    <!--65 Implement Frontend or search blog Post Feature-->
+    &lt;!&ndash;65 Implement Frontend or search blog Post Feature&ndash;&gt;
 
-    <!--65 Implement Frontend or search blog Post Feature-->
+    &lt;!&ndash;65 Implement Frontend or search blog Post Feature&ndash;&gt;
     <br/>
-    <!--65 Implement Frontend or search blog Post Feature-->
+    &lt;!&ndash;65 Implement Frontend or search blog Post Feature&ndash;&gt;
 
     <table class="table table-striped table-hover table-bordered">
         <thead class="table-dark">
@@ -184,26 +214,26 @@ style="position:fixed; height:50px; width:100%; bottom:0">
         <th style="width:20%" >Actions</th>
         </thead>
         <tbody>
-        <tr th:each = "tpost, tpostStat : ${tposts}">   <!--iterates over lists of blog posts   -->      <!--in Thymeleaf, iteration or looping is achieved by using the th:each attribute-->
+        <tr th:each = "tpost, tpostStat : ${tposts}">   &lt;!&ndash;iterates over lists of blog posts   &ndash;&gt;      &lt;!&ndash;in Thymeleaf, iteration or looping is achieved by using the th:each attribute&ndash;&gt;
             <td th:text="${tpostStat.count}">1</td>
             <td th:text="${tpost.projectTitle}">Project Title</td>
             <td th:text="${tpost.adebusoyeBriefContent}">Adebusoye Brief Content</td>
-          <!--  <td th:text="${tpost.createdOn}">Content created date</td>-->
-            <!--66Quickly Refactor UI code-->
+          &lt;!&ndash;  <td th:text="${tpost.createdOn}">Content created date</td>&ndash;&gt;
+            &lt;!&ndash;66Quickly Refactor UI code&ndash;&gt;
             <td th:text="${#temporals.format(tpost.createdOn,'dd MMM yyy')}">28 Aug 2023</td>
-            <!--66Quickly Refactor UI code-->
+            &lt;!&ndash;66Quickly Refactor UI code&ndash;&gt;
 
             <td>
-                <a th:href="@{/admin/tposts/{tpostId}/edit(tpostId=${tpost.id})}" class="btn btn-primary">Edit</a>  <!--@{/admin/posts/{postId} request url fro handler50-->
+                <a th:href="@{/admin/tposts/{tpostId}/edit(tpostId=${tpost.id})}" class="btn btn-primary">Edit</a>  &lt;!&ndash;@{/admin/posts/{postId} request url fro handler50&ndash;&gt;
                 <a th:href=" @{/admin/tposts/{tpostId}/delete(tpostId=${tpost.id})}" class="btn btn-danger">Delete</a>
-                <a th:href="@{/admin/tposts/{tpostUrl}/view(tpostUrl=${tpost.url})}" class="btn btn-info">View</a> <!--60-->
+                <a th:href="@{/admin/tposts/{tpostUrl}/view(tpostUrl=${tpost.url})}" class="btn btn-info">View</a> &lt;!&ndash;60&ndash;&gt;
             </td>
         </tr>
         </tbody>
     </table>
 </div>
 
-<!--<footer class="footer-copyright text-center bg-dark py-3"
+&lt;!&ndash;<footer class="footer-copyright text-center bg-dark py-3"
         style="position:fixed; height:50px; width:100%; bottom:0">
     <div>
         <strong>
@@ -211,7 +241,49 @@ style="position:fixed; height:50px; width:100%; bottom:0">
             All rights reserved
         </strong>
     </div>
-</footer>-->
+</footer>&ndash;&gt;
 <div th:replace="admin/footer" :: footer> </div>
 </body>
-</html>
+</html>-->
+
+
+
+
+
+
+<!-- 1-Create Thymeleaf Template to Display List of Posts List Blog Lposts with databse-->
+
+<!--
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Spring Boot Thymeleaf Blog App </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <h1>ADEBUSOYE Blog APP</h1>
+    </div>
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="table-dark">
+        <th style="width:10%" >#</th>
+        <th style="width:20%" >Project Title</th>
+        <th style="width:30%" >Adebusoye Brief Content</th>
+        <th style="width:20%" >Contents Created On</th>
+        <th style="width:20%" >Actions</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>-->

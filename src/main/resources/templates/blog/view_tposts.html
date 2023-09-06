@@ -2,11 +2,6 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
 >
-<!--<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>-->
-
 <div th:replace="blog/header :: header"></div>
 <body>
 <div th:replace="blog/header :: navbar"></div>
@@ -15,40 +10,48 @@
 <div class="container">
     <div class="row">
         <div class="col-md-9">
+
             <div th:each = "tpost: ${tpostsResponse}">
+
+                <!----> <!---->
                 <div class="card">
+
                     <div class="card-header">
                         <h3>
 
                             <a th:href="@{/tpost/{tpostUrl}(tpostUrl=${tpost.url})}"
                                th:text="${tpost.projectTitle}"></a>
 
+
                         </h3>
 
                         <div>
-                            <strong th:text="${#temporals.format(tpost.createdOn, 'dd MMM yyy')}">
+                           <strong th:text="${#temporals.format(tpost.createdOn, 'dd MMM yyy')}">
                             </strong>
 
                         </div>
                              <!---->
-                    </div>
+                    </div>   <!--card header-->
 
                     <div class="card-body">
                         <span th:utext="${tpost.adebusoyeBriefContent}"> </span>
-                        <a th:href="@{/tpost/{tpostUrl}(tpostUrl=${tpost.url})}">Read more</a>
+                        <a th:href="@{/tpost/{tpostUrl}(tpostUrl=${tpost.url})}" >Read more</a>
                     </div>
-                </div>
+                </div>  <!--card-->
+                <!----><!----><!---->
+
+
                 <br />
-            </div>
-        </div>
+            </div>   <!--iteration-->
+        </div> <!--col md9-->
         <div class="col-md-3">
 
-            <!-- search bar-->
+             <!--search bar-->
             <div th:replace="blog/search :: search"></div>
         </div>
 
-    </div>
-</div>
+    </div> <!--class row-->
+</div>   <!--class container-->
 <div th:replace="blog/footer :: footer"></div>
 
 </body>

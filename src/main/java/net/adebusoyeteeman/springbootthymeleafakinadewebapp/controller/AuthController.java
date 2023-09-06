@@ -23,7 +23,7 @@ public class AuthController { // 89
 
     // handler method to handle login page request
     @GetMapping("/login")
-    public String loginPage(){
+    public String loginPage(){  /*  <a th:href="@{/login}"> Login Here</a>*/
         return "login";
     }
 
@@ -52,10 +52,28 @@ public class AuthController { // 89
             return "register";
         }
         userService.saveUser(user);
-        return "redirect:/register?success";
+        return "redirect:/register?success"; // to show the success message
     }
 }
 
+
+
+/* @PostMapping("/register/save")
+    public String register(@Valid @ModelAttribute("user") RegistrationDto user,
+                           BindingResult result,
+                           Model model){
+        User existingUser = userService.findByEmail(user.getEmail());
+        if(existingUser != null && existingUser.getEmail() !=null && !existingUser.getEmail().isEmpty()){
+            result.rejectValue("email", null, "There is already a user with same email id");
+        }
+
+        if(result.hasErrors()){
+            model.addAttribute("user", user);
+            return "register";
+        }
+        userService.saveUser(user);
+        return "redirect:/register?success";
+    }*/
 
 
 

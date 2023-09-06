@@ -29,17 +29,20 @@ public class BlogController {
 
     }
 
-    //70 handler method to handle view post request
+    //70 handler method to handle view post request  // within herecreate comment form handling
+    //th:href="@{/tpost/{tpostUrl}(tpostUrl=${tpost.url})}"
    @GetMapping("/tpost/{tpostUrl}")
     private String showPost(@PathVariable("tpostUrl") String tpostUrl,
                             Model model) {
         TpostDto tpost = tpostService.findPostByUrl(tpostUrl);
         //79 Create comment form Handling
-        CommentDto commentDto = new CommentDto();  //79 Create comment form Handling
+       CommentDto commentDto = new CommentDto();  //79 Create comment form Handling
         model.addAttribute("tpost", tpost);
         model.addAttribute("comment",commentDto);  //79 Create comment form Handling
         return "blog/blog_tpost";
     }
+
+
      // 71 handler method to handle blog post search request
     // http://localhost:8080/page/search?query=java
     @GetMapping("/page/search")
@@ -50,13 +53,6 @@ public class BlogController {
         model.addAttribute("tpostsResponse", tpostsResponse);
         return "blog/view_tposts";
     }
-
-
-
-
-
-
-
 
 
 }
